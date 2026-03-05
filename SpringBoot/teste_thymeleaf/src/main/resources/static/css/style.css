@@ -1,0 +1,18 @@
+nav{
+    background-color: #333;
+    overflow: hidden;
+}
+
+div .nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+a{
+    color: rgb(0, 0, 0);
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 14px 20px;
+    display: block;
+    font-size: 4vh;
+}

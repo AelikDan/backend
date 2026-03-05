@@ -1,0 +1,1 @@
+CREATE DATABASE rh2_db;

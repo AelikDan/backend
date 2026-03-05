@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Funcionarios</title>
+</head>
+<body>
+    <div class="container">
+        <div th:insert="{fragment/header :: header}"></div>
+    <h4>Listar Funcionarios</h4>
+    <table class="table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nome:</th>
+                <th scope="col">E-mail:</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr th:each="funcionario : ${funcionario}">
+                <td><span th:text="&{funcionario.nome}"></span></td>
+                <td><span th:text="&{funcionario.email}"></span></td>
+                <td><a th:href="@{'/deletarfuncionario'+&{funcionario.id}}" class="waves-effect waves-light btn-small">
+                    <button type="button" class="btn btn-danger">Excluir</button>
+                </a></td>
+                <td><a th:href="@{'/editarfuncionario'+&{funcionario.id}}" class="waves-effect waves-light btn-small">
+                    <button type="button" class="btn btn-primary">Editar</button>
+                </a></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</body>
+</html>

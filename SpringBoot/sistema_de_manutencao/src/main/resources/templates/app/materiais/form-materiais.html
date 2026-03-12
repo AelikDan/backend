@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Material | Sistema de Estoque e Patrimônio</title>
+		<link rel="stylesheet" th:href="@{/css/style.css}"/>
+	</head>
+	<body>
+		<div th:include="~{fragments/header :: header}"></div>
+
+		<main class="senai-main">
+			<section class="senai-hero">
+				<div class="senai-shell" style="justify-content:center;">
+					<div class="senai-card" style="width:100%; max-width:520px;">
+						<h1 class="senai-title" style="font-size:22px;" th:text="${material.id == null} ? 'Novo Material' : 'Editar Material'"></h1>
+
+						<div th:if="${erro}" class="senai-alert senai-alert-error">
+							<p th:text="${erro}"></p>
+						</div>
+
+						<form th:action="${material.id == null} ? @{/materiais/salvar} : @{/materiais/salvar/{id}(id=${material.id})}"
+							  th:object="${material}" method="post" class="senai-form">
+
+							<label class="senai-label" for="nome">Nome</label>
+							<input class="senai-input" type="text" id="nome" name="nome" th:value="${material.nome}" placeholder="Nome do material" required/>
+
+							<label class="senai-label" for="tipo">Tipo</label>
+							<input class="senai-input" type="text" id="tipo" name="tipo" th:value="${material.tipo}" placeholder="Ex: Eletrônico, Ferramenta..." required/>
+
+							<label class="senai-label" for="status">Status</label>
+							<select class="senai-input" id="status" name="status" required>
+								<option value="" disabled>Selecione...</option>
+								<option value="DISPONIVEL" th:selected="${material.status == 'DISPONIVEL'}">Disponível</option>
+								<option value="EM_USO" th:selected="${material.status == 'EM_USO'}">Em Uso</option>
+								<option value="INATIVO" th:selected="${material.status == 'INATIVO'}">Inativo</option>
+							</select>
+
+							<button class="senai-button" type="submit" style="width:100%; margin-top:12px;">Salvar</button>
+						</form>
+
+						<p style="margin:12px 0 0;">
+							<a class="senai-link" th:href="@{/materiais}">← Voltar</a>
+						</p>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<div th:include="~{fragments/footer :: footer}"></div>
+	</body>
+</html>

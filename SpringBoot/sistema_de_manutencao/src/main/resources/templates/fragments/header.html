@@ -1,0 +1,25 @@
+<header th:fragment="header" class="senai-header">
+	<div class="senai-shell">
+		<a class="senai-brand" th:href="@{/}">
+			<img class="senai-logo" th:src="@{/img/logo-senai.png}" alt="SENAI-SP"/>
+			<span class="senai-brand-text">Sistema de Estoque e Patrimônio</span>
+		</a>
+
+		<nav class="senai-nav" aria-label="Navegação principal">
+			<!-- Logado -->
+			<div th:if="${session.usuarioLogado}" style="display:flex; gap:14px; align-items:center;">
+				<a class="senai-link" th:href="@{/materiais}">Materiais</a>
+				<a class="senai-link" th:href="@{/categorias}">Categorias</a>
+				<a class="senai-link" th:href="@{/ativos}">Ativos</a>
+				<a class="senai-link" th:href="@{/movimentacoes}">Movimentações</a>
+				<a class="senai-button" th:href="@{/logout}">Logout</a>
+			</div>
+
+			<!-- Não logado -->
+			<div th:unless="${session.usuarioLogado}" style="display:flex; gap:14px; align-items:center;">
+				<a class="senai-link" th:href="@{/cadastro}">Cadastro</a>
+				<a class="senai-button" th:href="@{/login}">Login</a>
+			</div>
+		</nav>
+	</div>
+</header>

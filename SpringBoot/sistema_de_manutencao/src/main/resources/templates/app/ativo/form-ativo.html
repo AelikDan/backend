@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Ativo | Sistema de Estoque e Patrimônio</title>
+		<link rel="stylesheet" th:href="@{/css/style.css}"/>
+	</head>
+	<body>
+		<div th:include="~{fragments/header :: header}"></div>
+
+		<main class="senai-main">
+			<section class="senai-hero">
+				<div class="senai-shell" style="justify-content:center;">
+					<div class="senai-card" style="width:100%; max-width:520px;">
+						<h1 class="senai-title" style="font-size:22px;" th:text="${ativo.id == null} ? 'Novo Ativo' : 'Editar Ativo'"></h1>
+
+						<div th:if="${erro}" class="senai-alert senai-alert-error">
+							<p th:text="${erro}"></p>
+						</div>
+
+						<form th:action="${ativo.id == null} ? @{/ativos/salvar} : @{/ativos/salvar/{id}(id=${ativo.id})}"
+							  th:object="${ativo}" method="post" class="senai-form">
+
+							<label class="senai-label" for="nome">Nome</label>
+							<input class="senai-input" type="text" id="nome" name="nome" th:value="${ativo.nome}" placeholder="Nome do ativo" required/>
+
+							<label class="senai-label" for="descricao">Descrição</label>
+							<input class="senai-input" type="text" id="descricao" name="descricao" th:value="${ativo.descricao}" placeholder="Descrição" required/>
+
+							<label class="senai-label" for="numeroPatrimonio">Número de Patrimônio</label>
+							<input class="senai-input" type="text" id="numeroPatrimonio" name="numeroPatrimonio" th:value="${ativo.numeroPatrimonio}" placeholder="Ex: PAT-001" required/>
+
+							<label class="senai-label" for="localizacao">Localização</label>
+							<input class="senai-input" type="text" id="localizacao" name="localizacao" th:value="${ativo.localizacao}" placeholder="Ex: Laboratório de Informática" required/>
+
+							<label class="senai-label" for="responsavel">Responsável</label>
+							<input class="senai-input" type="text" id="responsavel" name="responsavel" th:value="${ativo.responsavel}" placeholder="Nome do responsável" required/>
+
+							<label class="senai-label" for="status">Status</label>
+							<select class="senai-input" id="status" name="status" required>
+								<option value="" disabled>Selecione...</option>
+								<option value="ATIVO" th:selected="${ativo.status == 'ATIVO'}">Ativo</option>
+								<option value="EM_MANUTENCAO" th:selected="${ativo.status == 'EM_MANUTENCAO'}">Em Manutenção</option>
+								<option value="INATIVO" th:selected="${ativo.status == 'INATIVO'}">Inativo</option>
+							</select>
+
+							<button class="senai-button" type="submit" style="width:100%; margin-top:12px;">Salvar</button>
+						</form>
+
+						<p style="margin:12px 0 0;">
+							<a class="senai-link" th:href="@{/ativos}">← Voltar</a>
+						</p>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<div th:include="~{fragments/footer :: footer}"></div>
+	</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Movimentação | Sistema de Estoque e Patrimônio</title>
+		<link rel="stylesheet" th:href="@{/css/style.css}"/>
+	</head>
+	<body>
+		<div th:include="~{fragments/header :: header}"></div>
+
+		<main class="senai-main">
+			<section class="senai-hero">
+				<div class="senai-shell" style="justify-content:center;">
+					<div class="senai-card" style="width:100%; max-width:520px;">
+						<h1 class="senai-title" style="font-size:22px;">Nova Movimentação</h1>
+
+						<div th:if="${erro}" class="senai-alert senai-alert-error">
+							<p th:text="${erro}"></p>
+						</div>
+
+						<form th:action="@{/movimentacoes/salvar}" method="post" class="senai-form">
+
+							<label class="senai-label" for="tipo">Tipo</label>
+							<select class="senai-input" id="tipo" name="tipo" required>
+								<option value="" disabled>Selecione...</option>
+								<option value="ENTRADA">Entrada</option>
+								<option value="SAIDA">Saída</option>
+							</select>
+
+							<label class="senai-label" for="item">Item</label>
+							<input class="senai-input" type="text" id="item" name="item" placeholder="Nome do item" required/>
+
+							<label class="senai-label" for="data">Data</label>
+							<input class="senai-input" type="date" id="data" name="data" required/>
+
+							<button class="senai-button" type="submit" style="width:100%; margin-top:12px;">Registrar</button>
+						</form>
+
+						<p style="margin:12px 0 0;">
+							<a class="senai-link" th:href="@{/movimentacoes}">← Voltar</a>
+						</p>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<div th:include="~{fragments/footer :: footer}"></div>
+	</body>
+</html>

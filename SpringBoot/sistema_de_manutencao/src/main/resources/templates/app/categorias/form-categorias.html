@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Categoria | Sistema de Estoque e Patrimônio</title>
+		<link rel="stylesheet" th:href="@{/css/style.css}"/>
+	</head>
+	<body>
+		<div th:include="~{fragments/header :: header}"></div>
+
+		<main class="senai-main">
+			<section class="senai-hero">
+				<div class="senai-shell" style="justify-content:center;">
+					<div class="senai-card" style="width:100%; max-width:520px;">
+						<h1 class="senai-title" style="font-size:22px;" th:text="${categoria.id == null} ? 'Nova Categoria' : 'Editar Categoria'"></h1>
+
+						<div th:if="${erro}" class="senai-alert senai-alert-error">
+							<p th:text="${erro}"></p>
+						</div>
+
+						<form th:action="${categoria.id == null} ? @{/categorias/salvar} : @{/categorias/salvar/{id}(id=${categoria.id})}"
+							  th:object="${categoria}" method="post" class="senai-form">
+
+							<label class="senai-label" for="nome">Nome</label>
+							<input class="senai-input" type="text" id="nome" name="nome" th:value="${categoria.nome}" placeholder="Nome da categoria" required/>
+
+							<label class="senai-label" for="descricao">Descrição</label>
+							<input class="senai-input" type="text" id="descricao" name="descricao" th:value="${categoria.descricao}" placeholder="Descrição da categoria" required/>
+
+							<button class="senai-button" type="submit" style="width:100%; margin-top:12px;">Salvar</button>
+						</form>
+
+						<p style="margin:12px 0 0;">
+							<a class="senai-link" th:href="@{/categorias}">← Voltar</a>
+						</p>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<div th:include="~{fragments/footer :: footer}"></div>
+	</body>
+</html>

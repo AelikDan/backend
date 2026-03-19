@@ -1,3 +1,4 @@
+
 # Sistema de Gerenciamento de Estoque e Patrimônio — SENAI-SP
 
 ## Requisitos Funcionais (RF)
@@ -40,3 +41,22 @@
 
 ### Manutenção
 - RNF08 - Código organizado em camadas (model, repository, service, controller).
+
+## Sobre o Sistema
+
+Este sistema foi desenvolvido para atender às necessidades de uma unidade escolar do SENAI-SP, 
+onde o controle de materiais e equipamentos é essencial para o bom funcionamento dos laboratórios 
+e salas de aula.
+
+O sistema permite que a equipe administrativa acompanhe em tempo real a disponibilidade de 
+materiais como ferramentas, equipamentos de informática e eletrônicos, além de gerenciar os 
+ativos patrimoniais da instituição — como computadores, projetores e máquinas — registrando 
+sua localização e responsável.
+
+Com isso, a escola ganha mais controle, reduz perdas e facilita a gestão do patrimônio público.
+
+### Sobre o banco de dados
+
+O banco de dados ficou totalmente funcional, podendo ser manipulado pelo site e não necessariamente apenas pelo VS code
+
+- Ao clicar em opções como criar nova movimentação, criar novo ativo, etc, o banco já atualiza e as informações são enviadas direta.
